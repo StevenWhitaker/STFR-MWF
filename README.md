@@ -13,37 +13,37 @@ though other versions may work as well.
 
 1. Download or clone this repository.
 2. Download the BrainWeb dataset [here](https://brainweb.bic.mni.mcgill.ca/cgi/brainweb1?alias=phantom_1.0mm_normal_crisp&download=1).
-  - Choose raw byte (unsigned) for the file format.
-  - Choose none for compression.
-  - Place the downloaded file in `<path_to_this_repo>/STFR-MWF/src/estimation/data/BrainWeb/`,
-    where `<path_to_this_repo>` is where you downloaded this repo on your computer.
-    (You will have to create the `data` and `BrainWeb` directories.)
+   - Choose raw byte (unsigned) for the file format.
+   - Choose none for compression.
+   - Place the downloaded file in `<path_to_this_repo>/STFR-MWF/src/estimation/data/BrainWeb/`,
+     where `<path_to_this_repo>` is where you downloaded this repo on your computer.
+     (You will have to create the `data` and `BrainWeb` directories.)
 3. Download Julia 1.1.1 [here](https://julialang.org/downloads/oldreleases/).
 4. Run Julia.
 5. Enter Julia's package prompt by typing `]` at the Julia prompt, i.e.,
-```julia
-julia> ]
-```
+   ```julia
+   julia> ]
+   ```
 6. Add this repository with
-```julia
-(v1.1) pkg> add <path_to_this_repo>/STFR-MWF
-```
+   ```julia
+   (v1.1) pkg> add <path_to_this_repo>/STFR-MWF
+   ```
 7. Add PyPlot.jl with
-```julia
-(v1.1) pkg> add PyPlot
-```
+   ```julia
+   (v1.1) pkg> add PyPlot
+   ```
 8. Return to the original Julia prompt by typing backspace, i.e.,
-```julia
-(v1.1) pkg> <backspace>
-```
+   ```julia
+   (v1.1) pkg> <backspace>
+   ```
 9. Load the module with
-```julia
-julia> using STFRMWF
-```
+   ```julia
+   julia> using STFRMWF
+   ```
 10. Run any function with
-```julia
-julia> STFRMWF.function() # Replace function with actual function name
-```
+   ```julia
+   julia> STFRMWF.func() # Replace func with actual function name
+   ```
 
 Steps 1 through 8 only need to be done once,
 and step 9 only needs to be done once each time you start Julia.
