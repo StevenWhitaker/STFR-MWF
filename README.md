@@ -41,9 +41,9 @@ though other versions may work as well.
    julia> using STFRMWF
    ```
 10. Run any function with
-   ```julia
-   julia> STFRMWF.func() # Replace func with actual function name
-   ```
+    ```julia
+    julia> STFRMWF.func() # Replace func with actual function name
+    ```
 
 Steps 1 through 8 only need to be done once,
 and step 9 only needs to be done once each time you start Julia.
