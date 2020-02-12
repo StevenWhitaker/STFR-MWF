@@ -30,7 +30,7 @@ though other versions may work as well.
    ```
 7. Add this repository with
    ```julia
-   (v1.1) pkg> add <path_to_this_repo>/STFR-MWF
+   (v1.1) pkg> dev <path_to_this_repo>/STFR-MWF
    ```
 8. Return to the original Julia prompt by typing backspace, i.e.,
    ```julia
