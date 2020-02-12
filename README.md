@@ -20,17 +20,17 @@ though other versions may work as well.
      (You will have to create the `data` and `BrainWeb` directories.)
 3. Download Julia 1.1.1 [here](https://julialang.org/downloads/oldreleases/).
 4. Run Julia.
-5. Enter Julia's package prompt by typing `]` at the Julia prompt, i.e.,
+5. Install some necessary packages by running `setup.jl` via
+   ```julia
+   julia> include("<path_to_this_repo>/setup.jl")
+   ```
+6. Enter Julia's package prompt by typing `]` at the Julia prompt, i.e.,
    ```julia
    julia> ]
    ```
-6. Add this repository with
+7. Add this repository with
    ```julia
    (v1.1) pkg> add <path_to_this_repo>/STFR-MWF
-   ```
-7. Add PyPlot.jl with
-   ```julia
-   (v1.1) pkg> add PyPlot
    ```
 8. Return to the original Julia prompt by typing backspace, i.e.,
    ```julia
