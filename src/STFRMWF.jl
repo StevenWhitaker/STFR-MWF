@@ -1,7 +1,7 @@
 module STFRMWF
 
 # Function for referencing data/results files
-modulepath(file) = joinpath(dirname(pathof(STFRMWF)), file)
+modulepath(file) = joinpath(@__DIR__, file)
 
 # Import dependencies
 using SymPy

@@ -20,33 +20,23 @@ though other versions may work as well.
      (You will have to create the `data` and `BrainWeb` directories.)
 3. Download Julia 1.1.1 [here](https://julialang.org/downloads/oldreleases/).
 4. Run Julia.
-5. Install some necessary packages by running `setup.jl` via
+5. Change directories to this repo with
    ```julia
-   julia> include("<path_to_this_repo>/setup.jl")
+   julia> cd("<path_to_this_repo>")
    ```
-6. Enter Julia's package prompt by typing `]` at the Julia prompt, i.e.,
+6. Install some necessary packages and load the code by running `setup.jl` via
    ```julia
-   julia> ]
+   julia> include("setup.jl")
    ```
-7. Add this repository with
-   ```julia
-   (v1.1) pkg> dev <path_to_this_repo>/STFR-MWF
-   ```
-8. Return to the original Julia prompt by typing backspace, i.e.,
-   ```julia
-   (v1.1) pkg> <backspace>
-   ```
-9. Load the module with
-   ```julia
-   julia> using STFRMWF
-   ```
-10. Run any function with
+7. Run any function with
     ```julia
     julia> STFRMWF.func() # Replace func with actual function name
     ```
 
-Steps 1 through 8 only need to be done once,
-and step 9 only needs to be done once each time you start Julia.
+Steps 1 through 3 only need to be done once,
+and steps 4 through 6 only need to be done once each time you start Julia.
+(Note that running `setup.jl` again will not reinstall packages,
+so will run faster after the first time.)
 
 ## Reproducing Results
 To reproduce the results in the paper, call the corresponding function.
