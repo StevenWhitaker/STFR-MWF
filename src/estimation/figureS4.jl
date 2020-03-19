@@ -8,8 +8,10 @@ function figureS4()
 
     # Make sure data exists and download it if not
     isdir(modulepath("estimation/data/invivo")) || mkpath(modulepath("estimation/data/invivo"))
-    isfile(modulepath("estimation/data/invivo/recon.jld")) || error("Download estimation/data/invivo/recon.jld")
-    isfile(modulepath("estimation/data/invivo/headmask.mat")) || error("Download estimation/data/invivo/headmask.mat")
+    isfile(modulepath("estimation/data/invivo/recon.jld")) ||
+        getdata("https://doi.org/10.7302/y5ye-2706", modulepath("estimation/data/invivo/recon.jld"))
+    isfile(modulepath("estimation/data/invivo/headmask.mat")) ||
+        getdata("https://doi.org/10.7302/xdrn-gh31", modulepath("estimation/data/invivo/headmask.mat"))
 
     datapath = modulepath("estimation/data/invivo")
 

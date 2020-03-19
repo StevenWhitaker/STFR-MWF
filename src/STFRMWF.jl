@@ -4,21 +4,35 @@ module STFRMWF
 modulepath(file) = joinpath(@__DIR__, file)
 
 # Import dependencies
-using SymPy
-using ScanDesign, Distributions, JLD, Random
-using ProgressMeter, Plots, LaTeXStrings
-using ForwardDiff, Statistics
-using StatsBase
-using STFR, PERK
+using BlochSim
+using Distributions
+using ForwardDiff
+using Gumbo
+using HTTP
+using ImageTransformations
+using Interpolations
+using JLD
+using LaTeXStrings
 using LinearAlgebra
-using BlochSim, Interpolations, NNLS
-using MAT, ImageTransformations
+using MAT
+using NNLS
+using PERK
+using Plots
+using ProgressMeter
+using Random
+using ScanDesign
+using Statistics
+using StatsBase
+using STFR
+using SymPy
 
 # Make sure both PyPlot and GR are loaded
 pyplot()
 gr()
 
 # Include source code
+include("./getdata.jl")
+
 include("./scandesign/stfrscandesign.jl")
 include("./scandesign/designA.jl")
 include("./scandesign/designB.jl")

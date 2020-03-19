@@ -20,7 +20,8 @@ function figure6table4()
 
     # Make sure data exists and download it if not
     isdir(modulepath("estimation/data/invivo")) || mkpath(modulepath("estimation/data/invivo"))
-    isfile(modulepath("estimation/data/invivo/rois.mat")) || error("Download estimation/data/invivo/rois.mat")
+    isfile(modulepath("estimation/data/invivo/rois.mat")) ||
+        getdata("https://doi.org/10.7302/9t0w-2970", modulepath("estimation/data/invivo/rois.mat"))
 
     masks = matread(modulepath("estimation/data/invivo/rois.mat"))
     stats = x -> begin
@@ -64,10 +65,14 @@ function figure6table4data()
 
     # Make sure data exists and download it if not
     isdir(modulepath("estimation/data/invivo")) || mkpath(modulepath("estimation/data/invivo"))
-    isfile(modulepath("estimation/data/invivo/recon.jld")) || error("Download estimation/data/invivo/recon.jld")
-    isfile(modulepath("estimation/data/invivo/b1slice5.mat")) || error("Download estimation/data/invivo/b1slice5.mat")
-    isfile(modulepath("estimation/data/invivo/meseslice5.mat")) || error("Download estimation/data/invivo/meseslice5.mat")
-    isfile(modulepath("estimation/data/invivo/rois.mat")) || error("Download estimation/data/invivo/rois.mat")
+    isfile(modulepath("estimation/data/invivo/recon.jld")) ||
+        getdata("https://doi.org/10.7302/y5ye-2706", modulepath("estimation/data/invivo/recon.jld"))
+    isfile(modulepath("estimation/data/invivo/b1slice5.mat")) ||
+        getdata("https://doi.org/10.7302/epwx-vb86", modulepath("estimation/data/invivo/b1slice5.mat"))
+    isfile(modulepath("estimation/data/invivo/meseslice5.mat")) ||
+        getdata("https://doi.org/10.7302/vat5-gw24", modulepath("estimation/data/invivo/meseslice5.mat"))
+    isfile(modulepath("estimation/data/invivo/rois.mat")) ||
+        getdata("https://doi.org/10.7302/9t0w-2970", modulepath("estimation/data/invivo/rois.mat"))
 
     datapath = modulepath("estimation/data/invivo")
 

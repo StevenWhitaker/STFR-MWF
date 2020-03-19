@@ -79,8 +79,10 @@ function figure4table3()
 
     # Make sure data exists and download it if not
     isdir(modulepath("estimation/data/invivo")) || mkpath(modulepath("estimation/data/invivo"))
-    isfile(modulepath("estimation/data/invivo/recon.jld")) || error("Download estimation/data/invivo/recon.jld")
-    isfile(modulepath("estimation/data/invivo/b1slice5.mat")) || error("Download estimation/data/invivo/b1slice5.mat")
+    isfile(modulepath("estimation/data/invivo/recon.jld")) ||
+        getdata("https://doi.org/10.7302/y5ye-2706", modulepath("estimation/data/invivo/recon.jld"))
+    isfile(modulepath("estimation/data/invivo/b1slice5.mat")) ||
+        getdata("https://doi.org/10.7302/epwx-vb86", modulepath("estimation/data/invivo/b1slice5.mat"))
 
     # Display B0 and B1+ maps
     datapath = modulepath("estimation/data/invivo")
@@ -123,8 +125,10 @@ function figure4table3data()
 
     # Make sure data exists and download it if not
     isdir(modulepath("estimation/data/invivo")) || mkpath(modulepath("estimation/data/invivo"))
-    isfile(modulepath("estimation/data/invivo/recon.jld")) || error("Download estimation/data/invivo/recon.jld")
-    isfile(modulepath("estimation/data/invivo/b1slice5.mat")) || error("Download estimation/data/invivo/b1slice5.mat")
+    isfile(modulepath("estimation/data/invivo/recon.jld")) ||
+        getdata("https://doi.org/10.7302/y5ye-2706", modulepath("estimation/data/invivo/recon.jld"))
+    isfile(modulepath("estimation/data/invivo/b1slice5.mat")) ||
+        getdata("https://doi.org/10.7302/epwx-vb86", modulepath("estimation/data/invivo/b1slice5.mat"))
 
     # Make sure results/ folder exists
     isdir(modulepath("estimation/results")) || mkdir(modulepath("estimation/results"))
