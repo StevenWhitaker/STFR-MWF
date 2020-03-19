@@ -10,7 +10,7 @@ the download button found at the Deep Blue Data website given by `doi`.
 """
 function getdata(doi::AbstractString, filename::AbstractString)
 
-    response = HTTP.get(url)
+    response = HTTP.get(doi)
     doc = parsehtml(String(response.body))
     links = Vector{String}()
     findlinks!(links, doc.root)
