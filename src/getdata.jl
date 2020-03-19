@@ -18,7 +18,7 @@ function getdata(doi::AbstractString, filename::AbstractString)
                                            "the given DOI: $doi"))
     length(links) > 1 && throw(ErrorExecption("Multiple download links found " *
                                               "at the given DOI: $doi"))
-    link = joinpath("https://deepblue.lib.umich.edu", links[])
+    link = joinpath("https://deepblue.lib.umich.edu", splitpath(links[])[2:end]...)
     print("Downloading data from $doi to $filename...")
     download(link, filename)
     println("done!")
