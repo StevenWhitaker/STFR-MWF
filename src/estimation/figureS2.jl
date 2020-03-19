@@ -1,14 +1,14 @@
 """
-    figureS1()
+    figureS2()
 
-Create Supporting Information Figure S1. Figure S1 compares the MWF estimates
+Create Supporting Information Figure S2. Figure S2 compares the MWF estimates
 from the two scan designs for both white matter and gray matter tissue
 parameters. This simulation uses the two-compartment non-exchanging model.
 """
-function figureS1()
+function figureS2()
 
-    # Run figureS1data() if it hasn't run yet
-    isfile(modulepath("estimation/results/compare_designs_wmgm.jld")) || figureS1data()
+    # Run figureS2data() if it hasn't run yet
+    isfile(modulepath("estimation/results/compare_designs_wmgm.jld")) || figureS2data()
 
     (Δff, rmse) = load(modulepath("estimation/results/compare_designs_wmgm.jld"), "Δff", "rmse")
     pyplot()
@@ -35,11 +35,11 @@ function figureS1()
 end
 
 """
-    figureS1data()
+    figureS2data()
 
-Create data for Supporting Information Figure S1.
+Create data for Supporting Information Figure S2.
 """
-function figureS1data()
+function figureS2data()
 
     # Make sure scan design files exist
     createdesignA_estimation()

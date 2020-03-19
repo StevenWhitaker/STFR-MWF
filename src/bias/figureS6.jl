@@ -1,34 +1,32 @@
 """
     figureS6()
 
-Create Supporting Information Figure S6. Figure S6 plots the bias of the
-proposed STFR3-PERK estimator versus true MWF value for low and high SNR.
+Create Supporting Information Figure S6. Figure S6 compares the unbiased and
+biased Crámer-Rao Lower Bounds for scan design A for white matter tissue
+parameter values as a function of the additional myelin water off-resonance
+frequency Δωf.
 """
 function figureS6()
 
     # Run figureS6data() if it hasn't run yet
-    isfile(modulepath("bias/results/expectation_blochsim_vs_MWF.jld")) ||
+    isfile(modulepath("bias/results/biased_crlb_vs_Dwf.jld")) ||
         figureS6data()
 
-    (ff, expectation_lowSNR, expectation_highSNR) =
-        load(modulepath("bias/results/expectation_blochsim_vs_MWF.jld"),
-                        "ff", "expectation_lowSNR", "expectation_highSNR")
+    (Δff, biased, unbiased) = load(modulepath("bias/results/biased_crlb_vs_Dwf.jld"),
+                                   "Δff", "biased", "unbiased")
     pyplot()
-    p = plot(ff[[1,end]], ff[[1,end]], line = (:green, :dash), label = "",
-             title = "Expected MWF Estimate for WM",
-             xlabel = "MWF",
-             ylabel = "Expected MWF Estimate",
-             ylims = (-0.015, 0.3), yticks = 0:0.05:0.3,
-             xticks = 0:0.05:0.3,
-             aspect_ratio = :equal,
+    p = plot(title = "Unbiased vs Biased CRLB for WM",
+             xlabel = L"Δω_{\mathrm{f}} \; \mathrm{ (Hz)}",
+             ylabel = "CRLB of Standard Deviation of MWF",
+             ylims = (-0.05, 1), yticks = 0:0.1:1, xticks = 0:5:35,
              foreground_color_grid = :lightgrey, gridalpha = 1.0,
-             size = (440, 400), dpi = 300)
-    plot!(p, ff, expectation_lowSNR, line = (:blue),
-          label = "Low SNR",
+             size = (600, 400), dpi = 300)
+    plot!(p, Δff, unbiased, line = (:red),
+          label = "Unbiased CRLB",
+          marker = (:rect, :red))
+    plot!(p, Δff, biased, line = (:blue),
+          label = "Biased CRLB",
           marker = (:circle, :blue))
-    plot!(p, ff, expectation_highSNR, line = (:orange),
-          label = "High SNR",
-          marker = (:square, :orange))
     display(p)
     gr()
 
@@ -45,19 +43,23 @@ function figureS6data()
     createdesignA_bias()
 
     P = load(modulepath("bias/data/designA.jld"), "P")
-    ff = 0:0.01:0.3
-
-    expectation_lowSNR = map(ff -> stfrblochsimperkexpectation(0.77, ff, 0.1,
-        400, 832, 1000, 20, 80, 0.02, 100, 50, 15 * 2π, 0, 1, P), ff)
-
-    expectation_highSNR = map(ff -> stfrblochsimperkexpectation(0.77, ff, 0.1,
-        400, 832, 1000, 20, 80, 0.02, 100, 50, 15 * 2π, 0, 1, P, σ = 3.8607e-4),
-        ff)
+    Δff = 0:1:35
+    biased = zeros(length(Δff))
+    unbiased = zeros(length(Δff))
+    f = (Δff, biased) -> crlb(0.77, 0.15, 400, 832, 20, 80, Δff * 2π, 0, 1,
+                              P, biased)
+    prog = Progress(length(Δff), dt = 0.1, barglyphs = BarGlyphs("[=> ]"))
+    for i = 1:length(Δff)
+        biased[i] = f(Δff[i], true)
+        unbiased[i] = f(Δff[i], false)[2,2]
+        next!(prog)
+    end
+    biased .= sqrt.(biased)
+    unbiased .= sqrt.(unbiased)
 
     # Make sure results/ folder exists
     isdir(modulepath("bias/results")) || mkdir(modulepath("bias/results"))
 
-    @save(modulepath("bias/results/expectation_blochsim_vs_MWF.jld"), ff,
-        expectation_lowSNR, expectation_highSNR)
+    @save(modulepath("bias/results/biased_crlb_vs_Dwf.jld"), Δff, biased, unbiased)
 
 end

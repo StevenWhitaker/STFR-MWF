@@ -1,10 +1,10 @@
 """
-    figureS4()
+    figureS5()
 
-Create Supporting Information Figure S4. Figure S4 shows the 11 STFR scans and
+Create Supporting Information Figure S5. Figure S5 shows the 11 STFR scans and
 the separately estimated B0 map.
 """
-function figureS4()
+function figureS5()
 
     # Make sure data exists and download it if not
     isdir(modulepath("estimation/data/invivo")) || mkpath(modulepath("estimation/data/invivo"))

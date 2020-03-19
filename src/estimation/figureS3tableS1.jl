@@ -1,33 +1,33 @@
 """
-    figureS3tableS2()
+    figureS3tableS1()
 
-Create Supporting Information Figure S3 and Supporting Information Table S2.
-Figure S3 and Table S2 compare various MWF estimation techniques using white
-matter and gray matter tissues with a three-compartment model without exchange.
+Create Supporting Information Figure S3 and Supporting Information Table S1.
+Figure S3 and Table S1 compare various MWF estimation techniques using white
+matter and gray matter tissues with a four-compartment model with exchange.
 """
-function figureS3tableS2()
+function figureS3tableS1()
 
-    # Run figureS3tableS2data() if it hasn't run yet
-    (isfile(modulepath("estimation/results/brainweb_3compNE_STFR2-PERK.jld")) &&
-     isfile(modulepath("estimation/results/brainweb_3compNE_STFR3-PERK.jld")) &&
-     isfile(modulepath("estimation/results/brainweb_3compNE_MESE-NNLS.jld")) &&
-     isfile(modulepath("estimation/results/brainweb_3compNE_MESE-PERK.jld")) &&
-     isfile(modulepath("estimation/results/brainweb_3compNE_STFR3-PERK-JE.jld"))) || figureS3tableS2data()
+    # Run figureS3tableS1data() if it hasn't run yet
+    (isfile(modulepath("estimation/results/brainweb_4comp_STFR2-PERK.jld")) &&
+     isfile(modulepath("estimation/results/brainweb_4comp_STFR3-PERK.jld")) &&
+     isfile(modulepath("estimation/results/brainweb_4comp_MESE-NNLS.jld")) &&
+     isfile(modulepath("estimation/results/brainweb_4comp_MESE-PERK.jld")) &&
+     isfile(modulepath("estimation/results/brainweb_4comp_STFR3-PERK-JE.jld"))) || figureS3tableS1data()
 
     (ff1, ffmap1, rmse_wm1, rmse_gm1, mean_wm1, mean_gm1, std_wm1, std_gm1, t1) =
-        load(modulepath("estimation/results/brainweb_3compNE_STFR2-PERK.jld"), "ff", "ffmap",
+        load(modulepath("estimation/results/brainweb_4comp_STFR2-PERK.jld"), "ff", "ffmap",
         "rmse_wm", "rmse_gm", "mean_wm", "mean_gm", "std_wm", "std_gm", "t")
     (ff2, ffmap2, rmse_wm2, rmse_gm2, mean_wm2, mean_gm2, std_wm2, std_gm2, t2) =
-        load(modulepath("estimation/results/brainweb_3compNE_STFR3-PERK.jld"), "ff", "ffmap",
+        load(modulepath("estimation/results/brainweb_4comp_STFR3-PERK.jld"), "ff", "ffmap",
         "rmse_wm", "rmse_gm", "mean_wm", "mean_gm", "std_wm", "std_gm", "t")
     (ff3, ffmap3, rmse_wm3, rmse_gm3, mean_wm3, mean_gm3, std_wm3, std_gm3, t3) =
-        load(modulepath("estimation/results/brainweb_3compNE_MESE-NNLS.jld"), "ff", "ffmap",
+        load(modulepath("estimation/results/brainweb_4comp_MESE-NNLS.jld"), "ff", "ffmap",
         "rmse_wm", "rmse_gm", "mean_wm", "mean_gm", "std_wm", "std_gm", "t")
     (ff4, ffmap4, rmse_wm4, rmse_gm4, mean_wm4, mean_gm4, std_wm4, std_gm4, t4) =
-        load(modulepath("estimation/results/brainweb_3compNE_MESE-PERK.jld"), "ff", "ffmap",
+        load(modulepath("estimation/results/brainweb_4comp_MESE-PERK.jld"), "ff", "ffmap",
         "rmse_wm", "rmse_gm", "mean_wm", "mean_gm", "std_wm", "std_gm", "t")
     (ff5, ffmap5, rmse_wm5, rmse_gm5, mean_wm5, mean_gm5, std_wm5, std_gm5, t5) =
-        load(modulepath("estimation/results/brainweb_3compNE_STFR3-PERK-JE.jld"), "ff",
+        load(modulepath("estimation/results/brainweb_4comp_STFR3-PERK-JE.jld"), "ff",
         "ffmap", "rmse_wm", "rmse_gm", "mean_wm", "mean_gm", "std_wm",
         "std_gm", "t")
 
@@ -79,12 +79,12 @@ function figureS3tableS2()
 end
 
 """
-    figureS3tableS2data()
+    figureS3tableS1data()
 
 Create data for Supporting Information Figure S3 and Supporting Information
-Table S2.
+Table S1.
 """
-function figureS3tableS2data()
+function figureS3tableS1data()
 
     # Noise standard deviation
     σ = 4e-3
@@ -128,7 +128,7 @@ function figureS3tableS2data()
 
     # STFR2-PERK
     Random.seed!(20191204)
-    (data, obj, mask) = testdata_brainweb(:stfrblochsim, Δω = Δω, κ = κ, σ = σ, useexchange = false)
+    (data, obj, mask) = testdata_brainweb_4comp(:stfrblochsim, Δω = Δω, κ = κ, σ = σ)
     Nnoise = count(getmask(obj, :background))
     noise = testdata_noise(N = Nnoise, σ = σ)
     y = reduce(vcat, (transpose(data[:,:,d][mask]) for d = 1:11))
@@ -145,12 +145,12 @@ function figureS3tableS2data()
     std_wm = stdev(:wm, obj, ffmap)
     std_gm = stdev(:gm, obj, ffmap)
 
-    @save(modulepath("estimation/results/brainweb_3compNE_STFR2-PERK.jld"),
+    @save(modulepath("estimation/results/brainweb_4comp_STFR2-PERK.jld"),
         ff, ffmap, rmse_wm, rmse_gm, mean_wm, mean_gm, std_wm, std_gm, t)
 
     # STFR3-PERK
     Random.seed!(20191204)
-    (data, obj, mask) = testdata_brainweb(:stfrblochsim, Δω = Δω, κ = κ, σ = σ, useexchange = false)
+    (data, obj, mask) = testdata_brainweb_4comp(:stfrblochsim, Δω = Δω, κ = κ, σ = σ)
     Nnoise = count(getmask(obj, :background))
     noise = testdata_noise(N = Nnoise, σ = σ)
     y = reduce(vcat, (transpose(data[:,:,d][mask]) for d = 1:11))
@@ -167,12 +167,12 @@ function figureS3tableS2data()
     std_wm = stdev(:wm, obj, ffmap)
     std_gm = stdev(:gm, obj, ffmap)
 
-    @save(modulepath("estimation/results/brainweb_3compNE_STFR3-PERK.jld"),
+    @save(modulepath("estimation/results/brainweb_4comp_STFR3-PERK.jld"),
         ff, ffmap, rmse_wm, rmse_gm, mean_wm, mean_gm, std_wm, std_gm, t)
 
     # STFR3-PERK-JE
     Random.seed!(20191204)
-    (data, obj, mask) = testdata_brainweb(:stfrblochsim, Δω = Δω, κ = κ, σ = σ, useexchange = false)
+    (data, obj, mask) = testdata_brainweb_4comp(:stfrblochsim, Δω = Δω, κ = κ, σ = σ)
     Nnoise = count(getmask(obj, :background))
     noise = testdata_noise(N = Nnoise, σ = σ)
     y = reduce(vcat, (transpose(data[:,:,d][mask]) for d = 1:11))
@@ -189,12 +189,12 @@ function figureS3tableS2data()
     std_wm = stdev(:wm, obj, ffmap)
     std_gm = stdev(:gm, obj, ffmap)
 
-    @save(modulepath("estimation/results/brainweb_3compNE_STFR3-PERK-JE.jld"),
+    @save(modulepath("estimation/results/brainweb_4comp_STFR3-PERK-JE.jld"),
         ff, ffmap, rmse_wm, rmse_gm, mean_wm, mean_gm, std_wm, std_gm, t)
 
     # MESE-PERK
     Random.seed!(20191204)
-    (data, obj, mask) = testdata_brainweb(:mese, Δω = Δω, κ = κ, σ = σ, useexchange = false)
+    (data, obj, mask) = testdata_brainweb_4comp(:mese, Δω = Δω, κ = κ, σ = σ)
     Nnoise = count(getmask(obj, :background))
     noise = testdata_noise(N = Nnoise, σ = σ)
     y = reduce(vcat, (transpose(data[:,:,d][mask]) for d = 1:32))
@@ -211,12 +211,12 @@ function figureS3tableS2data()
     std_wm = stdev(:wm, obj, ffmap)
     std_gm = stdev(:gm, obj, ffmap)
 
-    @save(modulepath("estimation/results/brainweb_3compNE_MESE-PERK.jld"),
+    @save(modulepath("estimation/results/brainweb_4comp_MESE-PERK.jld"),
         ff, ffmap, rmse_wm, rmse_gm, mean_wm, mean_gm, std_wm, std_gm, t)
 
     # MESE-NNLS
     Random.seed!(20191204)
-    (data, obj, mask) = testdata_brainweb(:mese, Δω = Δω, κ = κ, σ = σ, useexchange = false)
+    (data, obj, mask) = testdata_brainweb_4comp(:mese, Δω = Δω, κ = κ, σ = σ)
     y = reduce(vcat, (transpose(data[:,:,d][mask]) for d = 1:32))
     β = 0.0151 * mean(y[1,:])
     y = [y[:,n] for n = 1:count(mask)]
@@ -233,7 +233,7 @@ function figureS3tableS2data()
     std_wm = stdev(:wm, obj, ffmap)
     std_gm = stdev(:gm, obj, ffmap)
 
-    @save(modulepath("estimation/results/brainweb_3compNE_MESE-NNLS.jld"),
+    @save(modulepath("estimation/results/brainweb_4comp_MESE-NNLS.jld"),
         ff, ffmap, rmse_wm, rmse_gm, mean_wm, mean_gm, std_wm, std_gm, t)
 
 end
