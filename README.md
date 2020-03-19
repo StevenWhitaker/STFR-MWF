@@ -55,3 +55,7 @@ The first time calling these functions may take a while
 (especially the biased CRLB and NNLS results),
 but after running once the results will be saved,
 so future calls will simply load the results and display them.
+
+## Data
+The data used in the paper and in this code is available at
+[Deep Blue Data](https://doi.org/10.7302/nw6e-1d66).
