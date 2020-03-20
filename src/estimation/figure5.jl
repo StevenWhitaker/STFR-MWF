@@ -12,7 +12,7 @@ function figure5()
      isfile(modulepath("estimation/results/brainweb_9comp_STFR3-PERK.jld")) &&
      isfile(modulepath("estimation/results/brainweb_9comp_MESE-NNLS.jld")) &&
      isfile(modulepath("estimation/results/brainweb_9comp_MESE-PERK.jld")) &&
-     isfile(modulepath("estimation/results/brainweb_9comp_STFR3-PERK-JE.jld"))) || figure4table3data()
+     isfile(modulepath("estimation/results/brainweb_9comp_STFR3-PERK-JE.jld"))) || figure5data()
 
     (ff1, ffmap1, rmse_wm1, rmse_gm1, mean_wm1, mean_gm1, std_wm1, std_gm1, t1) =
         load(modulepath("estimation/results/brainweb_9comp_STFR2-PERK.jld"), "ff", "ffmap",
