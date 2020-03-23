@@ -11,13 +11,12 @@ function figureS2()
     isfile(modulepath("estimation/results/compare_designs_wmgm.jld")) || figureS2data()
 
     (Δff, rmse) = load(modulepath("estimation/results/compare_designs_wmgm.jld"), "Δff", "rmse")
-    pyplot()
     p = plot(title = "RMSE in White Matter and Gray Matter",
              xlabel = L"Δω_{\mathrm{f}} \; \mathrm{ (Hz)}",
              ylabel = "RMSE of MWF Estimates",
              ylims = (0, 0.05), xticks = 0:5:35, legend = :bottomleft,
              foreground_color_grid = :lightgrey, gridalpha = 1.0,
-             size = (600, 400), dpi = 300)
+             size = (600, 400), dpi = 300, reuse = false)
     plot!(p, Δff, rmse[:,3], line = (:blue, :dot),
           label = "Design A: Gray Matter",
           marker = (:circle, :blue))

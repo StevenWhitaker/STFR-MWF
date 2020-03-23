@@ -26,9 +26,8 @@ using StatsBase
 using STFR
 using SymPy
 
-# Make sure both PyPlot and GR are loaded
+# Set PyPlot as the plotting backend
 pyplot()
-gr()
 
 # Include source code
 include("./getdata.jl")

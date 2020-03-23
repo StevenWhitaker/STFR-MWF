@@ -15,7 +15,7 @@ function figure6table4()
     ff = [ffmapstfr1 ffmapmese1; ffmapstfr2 ffmapmese2]
     p = heatmap(ff', color = :fire, aspect_ratio = :equal, yflip = true,
         xticks = [], yticks = [], clims = (0, 0.3),
-        dpi = 300, size = (600, 600))
+        dpi = 300, size = (600, 600), reuse = false)
     display(p)
 
     # Make sure data exists and download it if not

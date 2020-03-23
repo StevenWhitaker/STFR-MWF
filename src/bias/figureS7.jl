@@ -13,7 +13,6 @@ function figureS7()
     (ff, expectation_lowSNR, expectation_highSNR) =
         load(modulepath("bias/results/expectation_blochsim_vs_MWF.jld"),
                         "ff", "expectation_lowSNR", "expectation_highSNR")
-    pyplot()
     p = plot(ff[[1,end]], ff[[1,end]], line = (:green, :dash), label = "",
              title = "Expected MWF Estimate for WM",
              xlabel = "MWF",
@@ -22,7 +21,7 @@ function figureS7()
              xticks = 0:0.05:0.3,
              aspect_ratio = :equal,
              foreground_color_grid = :lightgrey, gridalpha = 1.0,
-             size = (440, 400), dpi = 300)
+             size = (440, 400), dpi = 300, reuse = false)
     plot!(p, ff, expectation_lowSNR, line = (:blue),
           label = "Low SNR",
           marker = (:circle, :blue))
@@ -30,7 +29,6 @@ function figureS7()
           label = "High SNR",
           marker = (:square, :orange))
     display(p)
-    gr()
 
 end
 

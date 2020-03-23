@@ -12,12 +12,11 @@ function figure2()
         figure2data()
 
     (Δff, cost) = load(modulepath("scandesign/results/compare_designs_range.jld"), "Δff", "cost")
-    pyplot()
     p = plot(title = "Comparison of CRLBs of Scan Designs",
              xlabel = L"Δω_{\mathrm{f}} \; \mathrm{ (Hz)}",
              ylabel = "CRLB of Standard Deviation of MWF",
              foreground_color_grid = :lightgrey, gridalpha = 1.0,
-             size = (600, 400), dpi = 300)
+             size = (600, 400), dpi = 300, reuse = false)
     plot!(p, Δff, cost[:,2], line = (:red),
           label = L"\mathrm{Design \; B: Ignore \;} Δω_{\mathrm{f}} \mathrm{\; during \; scan \; design}",
           marker = (:rect, :red))
@@ -25,7 +24,6 @@ function figure2()
           label = L"\mathrm{Design \; A: Optimize \; over \; range \; of \;} Δω_{\mathrm{f}}",
           marker = (:circle, :blue))
     display(p)
-    gr()
 
 end
 

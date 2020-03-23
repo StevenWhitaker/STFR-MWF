@@ -40,7 +40,7 @@ function figure4table3()
     ff = [ffmap1 ff; ffmap5 ffmap2; ffmap4 ffmap3]
     p = heatmap(ff', color = :fire, aspect_ratio = :equal,
         xticks = [], yticks = [], clims = (0, 0.3),
-        dpi = 300, size = (900, 600))
+        dpi = 300, size = (900, 600), reuse = false)
     display(p)
 
     # Helper functions for displaying statistics
@@ -100,12 +100,12 @@ function figure4table3()
 
     pb0 = heatmap(Δf', color = :coolwarm, aspect_ratio = :equal,
         xticks = [], yticks = [], clims = (-30, 30),
-        dpi = 300, size = (200, 200))
+        dpi = 300, size = (350, 250), reuse = false)
     display(pb0)
 
     pb1 = heatmap(κ', color = :coolwarm, aspect_ratio = :equal,
         xticks = [], yticks = [], clims = (0.8, 1.2),
-        dpi = 300, size = (200, 200))
+        dpi = 300, size = (350, 250), reuse = false)
     display(pb1)
 
 end

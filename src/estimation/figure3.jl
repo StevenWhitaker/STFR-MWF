@@ -14,13 +14,12 @@ function figure3()
     isfile(modulepath("estimation/results/compare_designs_range.jld")) || figure3data()
 
     (Δff, rmse) = load(modulepath("estimation/results/compare_designs_range.jld"), "Δff", "rmse")
-    pyplot()
     p = plot(title = L"\mathrm{Comparison \; of \; How \; to \; Account \; for \;} Δω_{\mathrm{f}}",
              xlabel = L"Δω_{\mathrm{f}} \; \mathrm{ (Hz)}",
              ylabel = "RMSE of MWF Estimates",
              ylims = (0, 0.07), yticks = 0:0.01:0.07, xticks = 0:5:35,
              foreground_color_grid = :lightgrey, gridalpha = 1.0,
-             size = (600, 400), dpi = 300)
+             size = (600, 400), dpi = 300, reuse = false)
     plot!(p, Δff, rmse[:,1], line = (:green),
           label = L"\mathrm{Ignore \;} Δω_{\mathrm{f}} \mathrm{\; in \; scan \; design \; and \; in \; training}",
           marker = (:diamond, :green))
@@ -31,7 +30,6 @@ function figure3()
           label = L"\mathrm{Account \; for \;} Δω_{\mathrm{f}} \mathrm{\; in \; scan \; design \; and \; in \; training}",
           marker = (:circle, :blue))
     display(p)
-    gr()
 
 end
 

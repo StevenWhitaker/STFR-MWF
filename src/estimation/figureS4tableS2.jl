@@ -39,7 +39,7 @@ function figureS4tableS2()
     ff = [ffmap1 ff; ffmap5 ffmap2; ffmap4 ffmap3]
     p = heatmap(ff', color = :fire, aspect_ratio = :equal,
         xticks = [], yticks = [], clims = (0, 0.3),
-        dpi = 300, size = (900, 600))
+        dpi = 300, size = (900, 600), reuse = false)
     display(p)
 
     # Helper functions for displaying statistics

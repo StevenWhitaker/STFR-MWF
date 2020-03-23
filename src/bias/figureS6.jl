@@ -14,13 +14,12 @@ function figureS6()
 
     (Δff, biased, unbiased) = load(modulepath("bias/results/biased_crlb_vs_Dwf.jld"),
                                    "Δff", "biased", "unbiased")
-    pyplot()
     p = plot(title = "Unbiased vs Biased CRLB for WM",
              xlabel = L"Δω_{\mathrm{f}} \; \mathrm{ (Hz)}",
              ylabel = "CRLB of Standard Deviation of MWF",
              ylims = (-0.05, 1), yticks = 0:0.1:1, xticks = 0:5:35,
              foreground_color_grid = :lightgrey, gridalpha = 1.0,
-             size = (600, 400), dpi = 300)
+             size = (600, 400), dpi = 300, reuse = false)
     plot!(p, Δff, unbiased, line = (:red),
           label = "Unbiased CRLB",
           marker = (:rect, :red))
@@ -28,7 +27,6 @@ function figureS6()
           label = "Biased CRLB",
           marker = (:circle, :blue))
     display(p)
-    gr()
 
 end
 
