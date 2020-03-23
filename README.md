@@ -50,6 +50,10 @@ so to reproduce both run
 ```julia
 julia> STFRMWF.figure4table3()
 ```
+To get a list of all available functions, run
+```julia
+julia> STFRMWF.reproducible
+```
 
 The first time calling these functions may take a while
 (especially the biased CRLB and NNLS results),

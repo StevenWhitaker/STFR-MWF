@@ -63,4 +63,20 @@ include("./bias/designA.jl")
 include("./bias/figureS6.jl")
 include("./bias/figureS7.jl")
 
+# Make list of functions used to reproduce results
+const reproducible = [
+    "table2",
+    "figure2",
+    "figure3",
+    "figure4table3",
+    "figure5",
+    "figure6table4",
+    "figureS2",
+    "figureS3tableS1",
+    "figureS4tableS2",
+    "figureS5",
+    "figureS6",
+    "figureS7"
+]
+
 end
