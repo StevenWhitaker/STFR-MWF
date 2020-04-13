@@ -2,9 +2,10 @@
 This repository contains code
 for reproducing the results in the paper:
 
-Steven T. Whitaker, Gopal Nataraj, Jon-Fredrik Nielsen, and Jeffrey A. Fessler \
-Myelin Water Fraction Estimation Using Small-Tip Fast Recovery MRI \
-Magnetic Resonance in Medicine, 2020, Accepted
+Steven T. Whitaker, Gopal Nataraj, Jon-Fredrik Nielsen, and Jeffrey A. Fessler. \
+Myelin water fraction estimation using small-tip fast recovery MRI. \
+Magnetic Resonance in Medicine. 2020;00:1-14. \
+<https://doi.org/10.1002/mrm.28259>
 
 ## Getting Started
 The code in this repository is structured as a Julia module.
